@@ -1,6 +1,14 @@
 <?php
 
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +22,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'title' => 'Home',
+        'active' => 'Home'
+    ]);
 });
+
+Route::get('/about',[AboutController::class, 'index']);
+
+
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'showContent']);
+
+Route::get('/categories', [CategoriesController::class, 'indexCategories']);
+
+Route::get('/categories/{category:slug}', [CategoriesController::class, 'postWithCategory']);
+
+Route::get('/authors/{author:username}', [AuthorController::class, 'index']);
+
