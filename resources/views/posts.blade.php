@@ -70,4 +70,6 @@
     <p class="text-center fs-4">No post found</p>
 @endif
 
+{{ $posts->links() }}
+
 @endsection
