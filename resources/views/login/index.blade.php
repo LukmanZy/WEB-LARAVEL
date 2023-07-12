@@ -2,7 +2,7 @@
 
 @section('container')
 
-<div class="row text-center justify-content-center">
+<div class="row justify-content-center">
     <div class="col-lg-5">
         <main class="form-signin mt-5">
 
@@ -14,19 +14,34 @@
             </div>
             @endif
 
-            <h1 class="h3 mb-3 fw-normal"> Please Login</h1>
-            <form>
+            @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+            <h1 class="h3 mb-3 fw-normal text-center"> Please Login</h1>
+            <form action="/login" method="POST">
+                @csrf
                 <div class="form-floating">
-                    <input type="emial" class="form-control" id="email" name="email" placeholder="mail@exapmle.com">
+                    <input type="emial" class="form-control @error('email')
+                    is-invalid
+                    @enderror" id="email" name="email" placeholder="mail@exapmle.com" autofocus required value="{{ old('email') }}">
                     <label for="email">Email Address</label>
+                    @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="your password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                     <label for="password">Password</label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
             </form>
-            <small class="d-block mt-3">Not registered? <a href="/register">Register Now!</a></small>
+            <small class="d-block mt-3 text-center">Not registered? <a href="/register">Register Now!</a></small>
         </main>
     </div>
 </div>
