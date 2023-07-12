@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,13 +42,12 @@ Route::get('/categories', [CategoriesController::class, 'indexCategories']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-// Route::get('/categories/{category:slug}', [CategoriesController::class, 'postWithCategory']);
-// Route::get('/authors/{author:username}', [AuthorController::class, 'index']);
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
