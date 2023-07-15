@@ -39,6 +39,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/post/{post:slug}', [PostController::class, 'showContent']);
 
 Route::get('/categories', [CategoriesController::class, 'indexCategories']);
+Route::get('/posts/category/{categories:slug}', [CategoriesController::class, 'postWithCategory']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
