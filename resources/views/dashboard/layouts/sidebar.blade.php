@@ -2,6 +2,12 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
+                <a class="btn btn-primary ms-3" aria-current="page" href="/">
+                <span data-feather="corner-left-up" class="align-text-bottom"></span>
+                back to the all posts
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
                 <span data-feather="home" class="align-text-bottom"></span>
                 Dashboard

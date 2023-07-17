@@ -16,7 +16,7 @@
                 {!! $posts->body !!}
             </article>
 
-            <a href="/posts" class="text-decortaion-none text-white btn btn-primary"> back</a>
+            <a href="/post/{{ $posts->slug }}" class="text-decortaion-none text-white btn btn-primary"> back to the post</a>
         </div>
     </div>
 </div>

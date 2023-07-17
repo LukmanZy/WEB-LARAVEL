@@ -28,11 +28,12 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home', [
         'title' => 'Home',
-        'active' => 'Home'
+        'active' => 'Home',
+        'posts' => Post::latest()->paginate(7)->withQueryString()
     ]);
 });
 
-Route::get('/about',[AboutController::class, 'index']);
+Route::get('/about',[AboutController::class, 'index'])->middleware('auth');
 
 
 Route::get('/posts', [PostController::class, 'index']);

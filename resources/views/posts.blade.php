@@ -3,6 +3,7 @@
 @section('container')
 <h1 class="mb-3 text-center">{{ $title }}</h1>
 
+{{-- Search --}}
 <div class="row justify-content-center mb-3">
     <div class="col-md-6">
         <form action="/posts">
